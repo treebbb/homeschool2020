@@ -41,19 +41,13 @@ def rotate_array(arr1, degrees):
 fig, ax = plt.subplots()
 add_bounding_box(ax, -10, -10, 10, 10)
 M = np.array( [(1, 5, 1), (1, 1, 2)] )
-print('M', M)
 add_shape(ax, M, LIGHT_GREY)
-T = np.array( [(2, 0), (0, 2) ] )
-print('T', T)
-print('M shape', M.shape, 'Tshape', T.shape)
-#M2 = np.matmul(T, M)
-M2 = rotate_array(M, 45)
-print('M2', M2)
-add_shape(ax, M2, DARK_GREY)
-M3 = rotate_array(M2, 45)
-print('M3', M3)
-add_shape(ax, M3, BLUE)
-#Mlist = [(1,1), (5, 1), (1, 2)]
-#add_shape(ax, Mlist, BLUE)
+darkness = 0.0
+degrees_step = 15
+for deg in range(45, 360, degrees_step):
+    color = (darkness, darkness, darkness)
+    darkness = darkness + (degrees_step/360.)
+    M2 = rotate_array(M, deg)
+    add_shape(ax, M2, color)
 ax.plot()
 plt.show()
